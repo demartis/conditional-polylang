@@ -3,7 +3,7 @@
  * Plugin Name: Conditional Polylang
  * Plugin URI:  https://github.com/demartis/conditional-polylang
  * Description: Provides a function and a shortcode to check against the current active language in Polylang.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      Riccardo De Martis
  * Author URI:  https://www.linkedin.com/in/rdemartis
  * Text Domain: conditional-polylang
