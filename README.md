@@ -1,7 +1,6 @@
-
 # Conditional Polylang
 
-**Version:** 1.1.0  
+**Version:** 1.1.1  
 **Author:** Riccardo De Martis  
 **LinkedIn URI:** [https://www.linkedin.com/in/rdemartis](https://www.linkedin.com/in/rdemartis)  
 **Plugin URI:** [https://github.com/demartis/conditional-polylang](https://github.com/demartis/conditional-polylang)  
@@ -13,21 +12,21 @@
 
 ### Standalone Shortcode Example
 
-Use the `[if_lang]` shortcode on its own. This will immediately output its content if the current Polylang language matches the provided `lang` attribute:
+Use the `[if_lang]` shortcode on its own. This will immediately output its content if the current Polylang language matches the provided `code` attribute:
 
 ```html
-[if_lang lang="en"]This content is displayed only when the current language is English.[/if_lang]
+[if_lang code="en"]This content is displayed only when the current language is English.[/if_lang]
 ```
 
 ### Container Shortcodes with Fallback
 
-Wrap multiple `[if_lang]` conditions and an `[else_lang]` fallback inside a `[conditional_language]` container. The container will output the first matching `[if_lang]` content; if none match, the `[else_lang]` content will be displayed:
+Wrap multiple `[if_lang]` conditions and an `[otherwise]` fallback inside a `[conditional_language]` container. The container will output the first matching `[if_lang]` content; if none match, the `[otherwise]` content will be displayed:
 
 ```html
 [conditional_language]
-  [if_lang lang="gb"]This is the content for GB.[/if_lang]
-  [if_lang lang="au"]This is the content for Australia.[/if_lang]
-  [else_lang]This is the content for other languages.[/else_lang]
+  [if_lang code="gb"]This is the content for GB.[/if_lang]
+  [if_lang code="au"]This is the content for Australia.[/if_lang]
+  [otherwise]This is the content for other languages.[/otherwise]
 [/conditional_language]
 ```
 
@@ -37,10 +36,10 @@ You can define several conditions within a container for multiple languages, wit
 
 ```html
 [conditional_language]
-  [if_lang lang="en"]Content for English users.[/if_lang]
-  [if_lang lang="es"]Contenido para usuarios en español.[/if_lang]
-  [if_lang lang="fr"]Contenu pour les utilisateurs français.[/if_lang]
-  [else_lang]Default content for users of other languages.[/else_lang]
+  [if_lang code="en"]Content for English users.[/if_lang]
+  [if_lang code="es"]Contenido para usuarios en español.[/if_lang]
+  [if_lang code="fr"]Contenu pour les utilisateurs français.[/if_lang]
+  [otherwise]Default content for users of other languages.[/otherwise]
 [/conditional_language]
 ```
 
@@ -54,7 +53,7 @@ You can define several conditions within a container for multiple languages, wit
 - **Shortcode Support:**  
   Two types of shortcode usage:
   - **Standalone `[if_lang]`** – outputs content immediately if the condition is met.
-  - **Container-based `[conditional_language]`** – allows grouping multiple `[if_lang]` conditions along with an `[else_lang]` fallback.
+  - **Container-based `[conditional_language]`** – allows grouping multiple `[if_lang]` conditions along with an `[otherwise]` fallback.
 
 - **Internationalization Ready:**  
   Fully prepared for translation.
@@ -97,10 +96,10 @@ This shortcode works outside the container. It immediately outputs its content i
 Example:
 
 ```html
-[if_lang lang="en"]This content is displayed only when the current language is English.[/if_lang]
+[if_lang code="en"]This content is displayed only when the current language is English.[/if_lang]
 ```
 
-#### Container Shortcodes: `[conditional_language]`, `[if_lang]`, and `[else_lang]`
+#### Container Shortcodes: `[conditional_language]`, `[if_lang]`, and `[otherwise]`
 
 Wrap your language-specific content within the `[conditional_language]` container to provide multiple conditions along with a fallback.
 
@@ -108,9 +107,9 @@ Example:
 
 ```html
 [conditional_language]
-  [if_lang lang="gb"]This is the content for GB.[/if_lang]
-  [if_lang lang="au"]This is the content for Australia.[/if_lang]
-  [else_lang]This is the content for other languages.[/else_lang]
+  [if_lang code="gb"]This is the content for GB.[/if_lang]
+  [if_lang code="au"]This is the content for Australia.[/if_lang]
+  [otherwise]This is the content for other languages.[/otherwise]
 [/conditional_language]
 ```
 
@@ -118,10 +117,10 @@ You can also create multiple conditions in one container:
 
 ```html
 [conditional_language]
-  [if_lang lang="en"]Content for English users.[/if_lang]
-  [if_lang lang="es"]Contenido para usuarios en español.[/if_lang]
-  [if_lang lang="de"]Inhalt für deutsche Benutzer.[/if_lang]
-  [else_lang]Fallback: Content for users of other languages.[/else_lang]
+  [if_lang code="en"]Content for English users.[/if_lang]
+  [if_lang code="es"]Contenido para usuarios en español.[/if_lang]
+  [if_lang code="de"]Inhalt für deutsche Benutzer.[/if_lang]
+  [otherwise]Fallback: Content for users of other languages.[/otherwise]
 [/conditional_language]
 ```
 
@@ -139,8 +138,10 @@ if ( conditional_polylang_is_language( 'en' ) ) {
 
 ## Changelog
 
-### 1.1.0
-- Added new shortcode syntax: `[conditional_language]`, `[if_lang]`, and `[else_lang]`.
+### 1.1.1
+- Updated shortcode syntax:
+  - `[if_lang]` now expects a `code` attribute instead of `lang`.
+  - `[otherwise]` is used as the fallback shortcode instead of `[else_lang]`.
 - Improved support for standalone `[if_lang]` usage outside of the container.
 - Updated documentation with multiple usage examples.
 
@@ -159,7 +160,3 @@ This plugin is licensed under the LGPL license.
 
 For support, updates, or further requests, please use the [GitHub Issues](https://github.com/demartis/conditional-polylang/issues) page.
 ```
-
----
-
-This updated `README.md` provides clear and accessible usage examples at the top, prioritizing the shortcode examples over the function examples. It also details the new capabilities of version 1.1.0 and reflects the new license (LGPL). Enjoy using **Conditional Polylang**!
