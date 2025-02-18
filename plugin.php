@@ -3,7 +3,7 @@
  * Plugin Name: Conditional Polylang
  * Plugin URI:  https://github.com/demartis/conditional-polylang
  * Description: Provides a function and shortcodes to conditionally display content based on the current active language in Polylang.
- * Version:     1.1.1
+ * Version:     1.2.0
  * Author:      Riccardo De Martis
  * Author URI:  https://www.linkedin.com/in/rdemartis
  * Text Domain: conditional-polylang

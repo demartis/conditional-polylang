@@ -14,7 +14,7 @@
  * [if_lang code="gb"]This is the content for GB[/if_lang]
  *
  * @package Conditional_Polylang
- * @since 1.1.1
+ * @since 1.2.0
  */
 
 // Global variables to store container state and output.

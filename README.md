@@ -1,6 +1,6 @@
 # Conditional Polylang
 
-**Version:** 1.1.1  
+**Version:** 1.2.0  
 **Author:** Riccardo De Martis  
 **LinkedIn URI:** [https://www.linkedin.com/in/rdemartis](https://www.linkedin.com/in/rdemartis)  
 **Plugin URI:** [https://github.com/demartis/conditional-polylang](https://github.com/demartis/conditional-polylang)  
@@ -138,12 +138,18 @@ if ( conditional_polylang_is_language( 'en' ) ) {
 
 ## Changelog
 
-### 1.1.1
+### 1.2.0
 - Updated shortcode syntax:
   - `[if_lang]` now expects a `code` attribute instead of `lang`.
   - `[otherwise]` is used as the fallback shortcode instead of `[else_lang]`.
 - Improved support for standalone `[if_lang]` usage outside of the container.
 - Updated documentation with multiple usage examples.
+
+### 1.1.0
+- Added new shortcode syntax: `[conditional_language]`, `[if_lang]`, and `[else_lang]`.
+- Improved support for standalone `[if_lang]` usage outside of the container.
+- Updated documentation with multiple usage examples.
+
 
 ### 1.0.0
 - Initial release of Conditional Polylang by Riccardo De Martis.
