@@ -1,4 +1,4 @@
-# Conditional Polylang
+# Conditional Polylang - Wordpress Plugin
 
 **Version:** 1.2.0  
 **Author:** Riccardo De Martis  
