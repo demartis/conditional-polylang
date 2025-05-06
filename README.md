@@ -1,6 +1,6 @@
-# Conditional Polylang - Wordpress Plugin
+# Conditional Polylang – WordPress Plugin
 
-**Version:** 1.2.0  
+**Version:** 1.3.0  
 **Author:** Riccardo De Martis  
 **LinkedIn URI:** [https://www.linkedin.com/in/rdemartis](https://www.linkedin.com/in/rdemartis)  
 **Plugin URI:** [https://github.com/demartis/conditional-polylang](https://github.com/demartis/conditional-polylang)  
@@ -8,62 +8,18 @@
 
 ---
 
-## Quick Usage Examples
+## Quick Usage Example
 
-### Standalone Shortcode Example
-
-Use the `[if_lang]` shortcode on its own. This will immediately output its content if the current Polylang language matches the provided `code` attribute:
-
-```html
-[if_lang code="en"]This content is displayed only when the current language is English.[/if_lang]
-```
-
-### Container Shortcodes with Fallback
-
-Wrap multiple `[if_lang]` conditions and an `[otherwise]` fallback inside a `[conditional_language]` container. The container will output the first matching `[if_lang]` content; if none match, the `[otherwise]` content will be displayed:
+Display different content based on the active Polylang language:
 
 ```html
 [conditional_language]
-  [if_lang code="gb"]This is the content for GB.[/if_lang]
-  [if_lang code="au"]This is the content for Australia.[/if_lang]
-  [otherwise]This is the content for other languages.[/otherwise]
+  [if lang="en"]Content for English users.[/if]
+  [if lang="es"]Contenido para usuarios en español.[/if]
+  [if lang="fr"]Contenu pour les utilisateurs français.[/if]
+  [else]Default content for users of other languages.[/else]
 [/conditional_language]
-```
-
-### Multiple Language Conditions Example
-
-You can define several conditions within a container for multiple languages, with a fallback if none match:
-
-```html
-[conditional_language]
-  [if_lang code="en"]Content for English users.[/if_lang]
-  [if_lang code="es"]Contenido para usuarios en español.[/if_lang]
-  [if_lang code="fr"]Contenu pour les utilisateurs français.[/if_lang]
-  [otherwise]Default content for users of other languages.[/otherwise]
-[/conditional_language]
-```
-
----
-
-## Features
-
-- **Language Check Function:**  
-  Easily check if the current Polylang language matches a specified language code.
-
-- **Shortcode Support:**  
-  Two types of shortcode usage:
-  - **Standalone `[if_lang]`** – outputs content immediately if the condition is met.
-  - **Container-based `[conditional_language]`** – allows grouping multiple `[if_lang]` conditions along with an `[otherwise]` fallback.
-
-- **Internationalization Ready:**  
-  Fully prepared for translation.
-
----
-
-## Requirements
-
-- WordPress 4.7 or higher.
-- [Polylang](https://wordpress.org/plugins/polylang/) plugin must be installed and activated.
+````
 
 ---
 
@@ -71,66 +27,82 @@ You can define several conditions within a container for multiple languages, wit
 
 ### Manual Installation via Releases
 
-1. **Download the Plugin:**  
-   Download the latest release from the [Releases](https://github.com/demartis/conditional-polylang/releases) page.
+1. **Download the Plugin:**
+   Get the latest release from the [Releases](https://github.com/demartis/conditional-polylang/releases) page.
 
-2. **Extract the Archive:**  
-   Unzip the downloaded archive to extract the plugin folder.
+2. **Extract the Archive:**
+   Unzip the downloaded archive.
 
-3. **Upload the Plugin:**  
+3. **Upload the Plugin:**
    Upload the `conditional-polylang` folder to your `/wp-content/plugins/` directory.
 
-4. **Activate the Plugin:**  
+4. **Activate the Plugin:**
    Go to the **Plugins** menu in your WordPress admin area and activate **Conditional Polylang**.
 
 ---
 
 ## Usage
 
-### Using the Shortcodes
+### Shortcodes Overview
 
-#### Standalone `[if_lang]` Shortcode
+The plugin provides a structured way to conditionally display content based on Polylang language codes.
 
-This shortcode works outside the container. It immediately outputs its content if the current language matches the specified language code.
+#### `[conditional_language]` Container
 
-Example:
+Encapsulates all conditional checks and the fallback block. Inside it, use `[if]` and optionally `[else]`.
 
-```html
-[if_lang code="en"]This content is displayed only when the current language is English.[/if_lang]
-```
+#### `[if lang="xx"]`
 
-#### Container Shortcodes: `[conditional_language]`, `[if_lang]`, and `[otherwise]`
+Outputs content only if the current language matches `xx` (e.g., `en`, `es`, `fr`).
 
-Wrap your language-specific content within the `[conditional_language]` container to provide multiple conditions along with a fallback.
+#### `[else]`
 
-Example:
+Optional fallback content if no `[if]` matched.
 
-```html
-[conditional_language]
-  [if_lang code="gb"]This is the content for GB.[/if_lang]
-  [if_lang code="au"]This is the content for Australia.[/if_lang]
-  [otherwise]This is the content for other languages.[/otherwise]
-[/conditional_language]
-```
+> 🔒 Note: `[if]` and `[else]` only work inside `[conditional_language]`. They do **nothing** when used on their own.
 
-You can also create multiple conditions in one container:
+---
+
+### More Examples
+
+#### Two-Language Example (English / Spanish)
 
 ```html
 [conditional_language]
-  [if_lang code="en"]Content for English users.[/if_lang]
-  [if_lang code="es"]Contenido para usuarios en español.[/if_lang]
-  [if_lang code="de"]Inhalt für deutsche Benutzer.[/if_lang]
-  [otherwise]Fallback: Content for users of other languages.[/otherwise]
+  [if lang="en"]Welcome to our site![/if]
+  [if lang="es"]¡Bienvenido a nuestro sitio![/if]
+  [else]Welcome! This is the fallback content.[/else]
 [/conditional_language]
 ```
 
-### Using the Function
+#### Multi-Language with Fallback
 
-The plugin provides a helper function `conditional_polylang_is_language( $language )` that returns `true` if the current Polylang language matches the specified language code. For example:
+```html
+[conditional_language]
+  [if lang="en"]Order now![/if]
+  [if lang="fr"]Commandez maintenant ![/if]
+  [if lang="de"]Jetzt bestellen![/if]
+  [else]Place your order in your language.[/else]
+[/conditional_language]
+```
+
+#### Fallback Only
+
+```html
+[conditional_language]
+  [else]This message appears for all languages not explicitly handled.[/else]
+[/conditional_language]
+```
+
+---
+
+## Helper Function for Developers
+
+The plugin provides a function for use in PHP:
 
 ```php
 if ( conditional_polylang_is_language( 'en' ) ) {
-    // Execute code for English language.
+    // Code specific to English language
 }
 ```
 
@@ -138,21 +110,28 @@ if ( conditional_polylang_is_language( 'en' ) ) {
 
 ## Changelog
 
+### 1.3.0
+
+* Simplified shortcode syntax:
+
+    * Replaced `[if_lang code="xx"]` with `[if lang="xx"]`
+    * Replaced `[otherwise]` with `[else]`
+* Enforced proper usage: `[if]` and `[else]` now only work inside `[conditional_language]`
+* Removed legacy support for older shortcode names
+* Updated documentation and examples accordingly
+
 ### 1.2.0
-- Updated shortcode syntax:
-  - `[if_lang]` now expects a `code` attribute instead of `lang`.
-  - `[otherwise]` is used as the fallback shortcode instead of `[else_lang]`.
-- Improved support for standalone `[if_lang]` usage outside of the container.
-- Updated documentation with multiple usage examples.
+
+* Introduced `[if_lang]` with `code` attribute and `[otherwise]` for fallbacks
+* Allowed `[if_lang]` usage outside containers
 
 ### 1.1.0
-- Added new shortcode syntax: `[conditional_language]`, `[if_lang]`, and `[else_lang]`.
-- Improved support for standalone `[if_lang]` usage outside of the container.
-- Updated documentation with multiple usage examples.
 
+* Added container syntax: `[conditional_language]`, `[if_lang]`, `[else_lang]`
 
 ### 1.0.0
-- Initial release of Conditional Polylang by Riccardo De Martis.
+
+* Initial release of Conditional Polylang by Riccardo De Martis
 
 ---
 
@@ -164,5 +143,5 @@ This plugin is licensed under the LGPL license.
 
 ## Support
 
-For support, updates, or further requests, please use the [GitHub Issues](https://github.com/demartis/conditional-polylang/issues) page.
-```
+For support or feature requests, please use the [GitHub Issues](https://github.com/demartis/conditional-polylang/issues) page.
+
